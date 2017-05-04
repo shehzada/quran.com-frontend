@@ -1,6 +1,5 @@
 export default function isValidSurah(nextState, replaceState) {
   const chapterId = parseInt(nextState.params.chapterId, 10);
-  if (__CLIENT__) window.s = nextState;
   if (isNaN(chapterId) || chapterId > 114 || chapterId < 1) {
     replaceState('/error/invalid-surah');
   }
