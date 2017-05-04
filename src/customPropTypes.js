@@ -200,6 +200,15 @@ export const segmentType = PropTypes.shape({
   ]) // TODO: This should be done a better way.
 });
 
+export const tafsirType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  verseKey: PropTypes.string.isRequired,
+  verseId: PropTypes.number.isRequired,
+  languageName: PropTypes.string.isRequired,
+  resourceName: PropTypes.string.isRequired
+});
+
 export const segments = PropTypes.objectOf(segmentType);
 
 export const match = PropTypes.arrayOf(matchType);

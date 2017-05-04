@@ -5,7 +5,9 @@ import {
   CLEAR_CURRENT,
   SET_CURRENT_VERSE,
   SET_CURRENT_WORD,
-  CLEAR_CURRENT_WORD
+  CLEAR_CURRENT_WORD,
+  LOAD_TAFSIR,
+  LOAD_TAFSIR_SUCCESS
 } from 'redux/constants/verses.js';
 
 export {
@@ -21,7 +23,9 @@ const initialState = {
   errored: false,
   loaded: false,
   loading: false,
+  tafsirLoading: false,
   entities: {},
+  tafsirs: {},
   result: []
 };
 
@@ -95,6 +99,22 @@ export default function reducer(state = initialState, action = {}) {
     }
     case LOAD_FAIL: {
       return state;
+    }
+    case LOAD_TAFSIR:
+      return {
+        ...state,
+        tafsirLoading: true
+      };
+    case LOAD_TAFSIR_SUCCESS: {
+      const tafsir = action.result.tafsirs[0];
+
+      return {
+        ...state,
+        tafsirs: {
+          ...state.entities,
+          [`${tafsir.verseKey}-${action.tafsirId}`]: tafsir
+        }
+      };
     }
     default:
       return state;
